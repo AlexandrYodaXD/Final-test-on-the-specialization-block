@@ -1,0 +1,142 @@
+-- Создание базы данных "Friends_of_Human"
+CREATE DATABASE `Friends_of_Human`;
+
+-- Создание таблицы "cat"
+CREATE TABLE `cat` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `command` VARCHAR(100),
+    `birthdate` DATE
+);
+
+-- Создание таблицы "dog"
+CREATE TABLE `dog` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `command` VARCHAR(100),
+    `birthdate` DATE
+);
+
+-- Создание таблицы "hamster"
+CREATE TABLE `hamster` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `command` VARCHAR(100),
+    `birthdate` DATE
+);
+
+-- Создание таблицы "horse"
+CREATE TABLE `horse` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `command` VARCHAR(100),
+    `birthdate` DATE
+);
+
+-- Создание таблицы "camel"
+CREATE TABLE `camel` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `command` VARCHAR(100),
+    `birthdate` DATE
+);
+
+-- Создание таблицы "donkey"
+CREATE TABLE `donkey` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `command` VARCHAR(100),
+    `birthdate` DATE
+);
+
+-- Наполнение данными таблицы "cat"
+INSERT INTO `cat` (`name`, `command`, `birthdate`)
+VALUES ('Барсик', 'Точит когти об диван', '2018-05-12');
+
+-- Наполнение данными таблицы "dog"
+INSERT INTO `dog` (`name`, `command`, `birthdate`)
+VALUES ('Рекс', 'Лает на хвост', '2019-02-28');
+
+-- Наполнение данными таблицы "hamster"
+INSERT INTO `hamster` (`name`, `command`, `birthdate`)
+VALUES ('Чарли', 'Считает оставшиеся дни', '2020-07-05');
+
+-- Наполнение данными таблицы "horse"
+INSERT INTO `horse` (`name`, `command`, `birthdate`)
+VALUES ('Илья', 'И-го-гокает', '2016-11-20');
+
+-- Наполнение данными таблицы "camel"
+INSERT INTO `camel` (`name`, `command`, `birthdate`)
+VALUES ('Добрыня', 'Мечтает о пустыне', '2017-09-10');
+
+-- Наполнение данными таблицы "donkey"
+INSERT INTO `donkey` (`name`, `command`, `birthdate`)
+VALUES ('Алёша', 'Донимает Шрека', '2019-12-03');
+
+-- Очистка таблицы "camel"
+DELETE FROM `camel`;
+
+-- Создание новой таблицы "horses_and_donkeys" и копирование данных из таблиц "horse" и "donkey"
+CREATE TABLE `horses_and_donkeys` AS
+SELECT * FROM `horse`
+UNION
+SELECT * FROM `donkey`;
+
+-- Создание таблицы "молодые животные" с возрастом в одной колонке
+CREATE TABLE `young_animals` AS
+SELECT
+    `id`,
+    `name`,
+    `command`,
+    `birthdate`,
+    CONCAT(
+        TIMESTAMPDIFF(YEAR, `birthdate`, CURDATE()), ' г ',
+        TIMESTAMPDIFF(MONTH, `birthdate`, CURDATE()) % 12, ' мес'
+    ) AS `age`
+FROM
+    (
+        SELECT * FROM `cat`
+        UNION ALL
+        SELECT * FROM `dog`
+        UNION ALL
+        SELECT * FROM `hamster`
+        UNION ALL
+        SELECT * FROM `horses_and_donkeys`
+    ) AS `animals`
+WHERE
+    TIMESTAMPDIFF(YEAR, `birthdate`, CURDATE()) >= 1
+    AND TIMESTAMPDIFF(YEAR, `birthdate`, CURDATE()) < 3;
+
+-- Создание таблицы "all_animals" и объединение данных из всех таблиц
+CREATE TABLE `all_animals` AS
+SELECT
+    `id`,
+    `name`,
+    `command`,
+    `birthdate`,
+    'cat' AS `source_table`
+FROM `cat`
+UNION ALL
+SELECT
+    `id`,
+    `name`,
+    `command`,
+    `birthdate`,
+    'dog' AS `source_table`
+FROM `dog`
+UNION ALL
+SELECT
+    `id`,
+    `name`,
+    `command`,
+    `birthdate`,
+    'hamster' AS `source_table`
+FROM `hamster`
+UNION ALL
+SELECT
+    `id`,
+    `name`,
+    `command`,
+    `birthdate`,
+    'horses_and_donkeys' AS `source_table`
+FROM `horses_and_donkeys`;
