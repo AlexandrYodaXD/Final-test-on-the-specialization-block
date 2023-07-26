@@ -7,11 +7,6 @@ public class Donkey extends PackAnimal {
     }
 
     @Override
-    public String getTypeTitle() {
-        return "Осёл";
-    }
-
-    @Override
     public void do_command() {
         System.out.println("Осёл " + getName() + " выполняет команду: " + getCommand());
     }

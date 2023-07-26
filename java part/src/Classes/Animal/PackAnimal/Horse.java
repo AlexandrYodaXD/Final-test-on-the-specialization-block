@@ -7,11 +7,6 @@ public class Horse extends PackAnimal {
     }
 
     @Override
-    public String getTypeTitle() {
-        return "Лошадь";
-    }
-
-    @Override
     public void do_command() {
         System.out.println("Лошадь " + getName() + " выполняет команду: " + getCommand());
     }
