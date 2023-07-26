@@ -51,4 +51,13 @@ public abstract class Animal implements Command {
         this.birthdate = birthdate;
     }
 
+    public abstract String getTypeTitle();
+
+    @Override
+    public String toString() {
+        return "id: " + id +
+                ", имя: " + name +
+                ", команда: " + command +
+                ", дата рождения: " + birthdate;
+    }
 }

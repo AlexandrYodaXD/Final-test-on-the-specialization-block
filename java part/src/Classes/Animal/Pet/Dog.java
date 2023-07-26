@@ -7,6 +7,11 @@ public class Dog extends Pet {
     }
 
     @Override
+    public String getTypeTitle() {
+        return "Собака";
+    }
+
+    @Override
     public void do_command() {
         System.out.println("Собака " + getName() + " выполняет команду: " + getCommand());
     }
