@@ -1,4 +1,4 @@
-package Classes.Animal.PetRegistry;
+package Classes.PetRegistry;
 
 import Classes.Animal.Animal;
 import Classes.Animal.PackAnimal.Camel;
@@ -28,7 +28,7 @@ public class PetRegistry {
         try (counter) {
 
             String subtype = getAnimalSubtype();
-            String type= getAnimalType(subtype);
+            String type = getAnimalType(subtype);
             String name = getAnimalName();
             String command = getAnimalCommand();
             Date birthdate = getAnimalBirthdate();
@@ -77,7 +77,7 @@ public class PetRegistry {
     }
 
     private String getAnimalName() throws IOException {
-        System.out.print("Введите имя животного:");
+        System.out.print("Введите имя животного: ");
         String name = scanner.nextLine().trim();
 
         if (name.isEmpty()) {
@@ -92,7 +92,7 @@ public class PetRegistry {
     }
 
     private String getAnimalCommand() throws IOException {
-        System.out.println("Введите команду, которую выполняет животное:");
+        System.out.println("Введите команду, которую выполняет животное: ");
         String command = scanner.nextLine().trim();
 
         if (command.isEmpty()) {
@@ -107,7 +107,7 @@ public class PetRegistry {
     }
 
     private Date getAnimalBirthdate() throws IOException {
-        System.out.println("Введите дату рождения животного в формате 31.12.2019:");
+        System.out.println("Введите дату рождения животного в формате 31.12.2019: ");
         String dateString = scanner.nextLine().trim();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -123,7 +123,7 @@ public class PetRegistry {
     }
 
     private String getPetBreed() throws IOException {
-        System.out.println("Введите породу домашнего животного:");
+        System.out.println("Введите породу домашнего животного: ");
         String name = scanner.nextLine().trim();
 
         if (name.isEmpty()) {
@@ -138,7 +138,7 @@ public class PetRegistry {
     }
 
     private Boolean getPetTrained() throws IOException {
-        System.out.println("Введите дрессированно ли домашнее животное:");
+        System.out.println("Введите дрессированно ли домашнее животное: ");
         System.out.println("1. Да");
         System.out.println("2. Нет");
 
@@ -158,7 +158,7 @@ public class PetRegistry {
     }
 
     private int getPackAnimalLoadCapacity() throws IOException {
-        System.out.println("Введите переносимый животным вес (кг):");
+        System.out.println("Введите переносимый животным вес (кг): ");
         try {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
@@ -169,7 +169,7 @@ public class PetRegistry {
     }
 
     private int getPackAnimalMaxSpeed() throws IOException {
-        System.out.print("Введите максимальную скорость животного (км\\ч):");
+        System.out.print("Введите максимальную скорость животного (км\\ч): ");
         try {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
@@ -209,7 +209,7 @@ public class PetRegistry {
     }
 
     public void printAnimalCommands() {
-        System.out.print("Введите ID животного, чтобы увидеть его команду:");
+        System.out.print("Введите ID животного, чтобы увидеть его команду: ");
         int animalId = scanner.nextInt();
 
         Animal animal = findAnimalById(animalId);
@@ -221,13 +221,13 @@ public class PetRegistry {
     }
 
     public void teachAnimalNewCommand() {
-        System.out.print("Введите ID животного, чтобы обучить его новой команде:");
+        System.out.print("Введите ID животного, чтобы обучить его новой команде: ");
         int animalId = scanner.nextInt();
         scanner.nextLine();
 
         Animal animal = findAnimalById(animalId);
         if (animal != null) {
-            System.out.print("Введите новую команду для животного:");
+            System.out.print("Введите новую команду для животного: ");
             String newCommand = scanner.nextLine();
             animal.setCommand(newCommand);
             System.out.println("Животное " + animal.getName() + " успешно обучено новой команде: " + newCommand);
@@ -251,7 +251,7 @@ public class PetRegistry {
             return;
         }
 
-        System.out.println("Список всех животных в реестре:");
+        System.out.println("Список всех животных в реестре: ");
         for (Animal animal : animals) {
             System.out.println(animal);
         }

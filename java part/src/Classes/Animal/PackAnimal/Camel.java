@@ -7,11 +7,6 @@ public class Camel extends PackAnimal {
     }
 
     @Override
-    public String getTypeTitle() {
-        return "Верблюд";
-    }
-
-    @Override
     public void do_command() {
         System.out.println("Верблюд " + getName() + " выполняет команду: " + getCommand());
     }

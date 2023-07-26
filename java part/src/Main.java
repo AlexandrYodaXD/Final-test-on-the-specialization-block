@@ -1,4 +1,4 @@
-import Classes.Animal.PetRegistry.PetRegistry;
+import Classes.PetRegistry.PetRegistry;
 
 import java.util.Scanner;
 

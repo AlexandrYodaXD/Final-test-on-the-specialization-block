@@ -7,11 +7,6 @@ public class Hamster extends Pet {
     }
 
     @Override
-    public String getTypeTitle() {
-        return "Хомяк";
-    }
-
-    @Override
     public void do_command() {
         System.out.println("Хомяк " + getName() + " выполняет команду: " + getCommand());
     }
