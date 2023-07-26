@@ -29,4 +29,11 @@ public abstract class Pet extends Animal {
     public void setTrained(Boolean trained) {
         this.trained = trained;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", порода: " + breed +
+                ", дрессирован: " + trained;
+    }
 }
